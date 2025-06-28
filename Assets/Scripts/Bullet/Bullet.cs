@@ -12,6 +12,7 @@ namespace Bullet
         public int hurts;
         
         private Rigidbody2D _rb;
+        private SpriteRenderer _sr;
 
         private void Start()
         {
@@ -21,6 +22,8 @@ namespace Bullet
         public void InitializeBullet(IBulletType type,Vector2 enemyPosition,Vector2 playerPosition)
         {
             _rb.velocity = (enemyPosition-playerPosition).normalized * _initSpeed;
+            _sr.sprite = type.sprite;
+            _sr.size = new Vector2(50, 50);
             hurts = type.Hurts;
         }
         private void Update()

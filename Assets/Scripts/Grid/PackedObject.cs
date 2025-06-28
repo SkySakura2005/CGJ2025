@@ -7,7 +7,7 @@ namespace Grid
 {
     public class PackedObject:MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHandler
     {
-        public IObjectType type;
+        private IObjectType type;
 
         private SpriteRenderer _sr;
         private Vector2 _standardDragPosition;
