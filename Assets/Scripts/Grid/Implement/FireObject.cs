@@ -9,7 +9,7 @@ namespace Grid.Implement
     public class FireObject:IObjectType
     {
         public BuffType Type=> BuffType.Lifes;
-        public Sprite Sprite => Resources.LoadAll<Sprite>("ArtAssets/Creatures/Sprites")[0];
+        public Sprite Sprite => Resources.LoadAll<Sprite>("ArtAssets/Creatures/Sprites")[1];
 
         public bool[,] Shape =>new bool[2,2]
         {

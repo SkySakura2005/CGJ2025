@@ -13,6 +13,10 @@ namespace Grid
         private void Start()
         {
             _coll = GetComponent<BoxCollider2D>();
+            GenerateObject(new FireObject());
+            GenerateObject(new WaterObject());
+            GenerateObject(new EarthObject());
+            GenerateObject(new GrassObject());
             GenerateRandomObject();
         }
 
