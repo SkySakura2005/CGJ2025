@@ -69,7 +69,10 @@ namespace Grid
                 }
             }
             go.transform.position = StartPosition+new Vector2((CellSize+Spacing)*col,(CellSize+Spacing)*row)+new Vector2(CellSize/2,CellSize/2);
-            
+            if (type.Type == BuffType.Lifes)
+            {
+                Player.Player.Instance.ExecuteObject();
+            }
         }
     }
 }

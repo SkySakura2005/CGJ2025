@@ -7,5 +7,6 @@ namespace Enemy.Interface
         public int MaxLife { get; }
         public Sprite EnemySprite { get; }
         public int Velocity { get; }
+        public int Hurt { get; }
     }
 }

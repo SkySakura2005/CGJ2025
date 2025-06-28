@@ -18,5 +18,10 @@ namespace Enemy.Implement
         {
             get{ return 1; }
         }
+
+        public int Hurt
+        {
+            get { return 1; }
+        }
     }
 }

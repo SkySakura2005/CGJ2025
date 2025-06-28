@@ -17,6 +17,7 @@ namespace Bullet
         {
             _rb = GetComponent<Rigidbody2D>();
             _rb.velocity=new Vector2(_initSpeed*Mathf.Cos(Mathf.PI/4f),_initSpeed*Mathf.Sin(Mathf.PI/4f));
+            hurts=100;
         }
 
         public void InitializeBullet(IBulletType type)

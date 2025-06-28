@@ -15,6 +15,7 @@ namespace Enemy
         private Sprite _sprite;
         private int _speed;
 
+        public int Hurt;
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -25,8 +26,9 @@ namespace Enemy
             _generatePoint = transform.position;
             _centerPoint = centerPoint;
             _maxLife = type.MaxLife;
+            _life = _maxLife;
             _speed = type.Velocity;
-
+            Hurt = type.Hurt;
         }
 
         private void Update()
@@ -38,11 +40,12 @@ namespace Enemy
             }
         }
 
-        private void OnTriggerEnter2D(Collider other)
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.CompareTag("Bullets"))
+            if (other.gameObject.CompareTag("Bullets"))
             {
-                _life -= other.GetComponent<Bullet.Bullet>().hurts;
+                Debug.Log(other.transform.name);
+                _life -= other.transform.GetComponent<Bullet.Bullet>().hurts;
                 if (_life <= 0)
                 {
                     Destroy(gameObject);

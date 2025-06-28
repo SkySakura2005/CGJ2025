@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4575288505387030538}
   m_Layer: 6
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,7 +115,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &2041797210947651030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36546996240943ca8d75f63edd045880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Hurt: 0
 --- !u!61 &4575288505387030538
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,7 +145,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

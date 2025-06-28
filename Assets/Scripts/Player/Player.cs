@@ -2,6 +2,7 @@ using System;
 using Grid;
 using Grid.Interface;
 using UnityEngine;
+using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
 namespace Player
 {
@@ -9,13 +10,36 @@ namespace Player
     {
         public int maxLife;
         public int currentLife;
-        private void OnTriggerEnter2D(Collider2D other)
+
+        public static Player Instance;
+        private void Start()
         {
-            
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            currentLife = maxLife;
         }
 
-        public void ExecuteObject(IObjectType objectType)
+        private void OnTriggerEnter2D(Collider2D other)
         {
+            if (other.CompareTag("Enemy"))
+            {
+                currentLife -= other.GetComponent<Enemy.Enemy>().Hurt;
+                if (currentLife <= 0)
+                {
+                    SceneManager.LoadScene(1);
+                }
+            }
+        }
+
+        public void ExecuteObject()
+        {
+            //objectType.PlayerEffects(gameObject);
             
         }
     }
