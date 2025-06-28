@@ -28,9 +28,9 @@ namespace Grid
             }
         };*/
         
-        public static Vector2 StartPosition=new Vector2(0,0);
-        public static int CellSize=1;
-        public static int Spacing=2;
+        public static Vector2 StartPosition=new Vector2(-8.5f,3.85f);
+        public static float CellSize=0.6f;
+        public static int Spacing=0;
         public static void GetGridPosition(Vector2 position,out int row,out int col)
         {
             if (position.x < StartPosition.x || position.y < StartPosition.y ||
@@ -41,8 +41,8 @@ namespace Grid
                 col=-1;
                 return;
             }
-            int x=(int)(position.x-StartPosition.x)/(CellSize+Spacing);
-            int y=(int)(position.y-StartPosition.y)/(CellSize+Spacing);
+            int x=(int)((position.x-StartPosition.x)/(CellSize+Spacing));
+            int y=(int)((position.y-StartPosition.y)/(CellSize+Spacing));
             row = x;
             col = y;
         }
@@ -83,6 +83,7 @@ namespace Grid
                     if(type.Shape[i, j])ObjectList[row + i, col + j] = null;
                 }
             }
+            Player.Player.Instance.RemoveObject(type);
         }
     }
 }

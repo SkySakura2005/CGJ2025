@@ -11,7 +11,7 @@ namespace UI.GameOverScene
         public Button exitButton;
         private void Start()
         {
-            restartButton.onClick.AddListener(()=>SceneManager.LoadScene(0));
+            restartButton.onClick.AddListener(()=>SceneManager.LoadScene(1));
             exitButton.onClick.AddListener(()=>Application.Quit());
         }
     }

@@ -6,7 +6,7 @@ namespace Bullet
 {
     public class BulletGenerator:MonoBehaviour
     {
-        private IBulletType _type;
+        public IBulletType Type;
         
         public float interval;
         public float currentInterval;
@@ -18,7 +18,7 @@ namespace Bullet
 
         public void InitializeGenerator(IBulletType bulletType)
         {
-            _type = bulletType;
+            Type = bulletType;
         }
         private void Update()
         {
@@ -37,12 +37,12 @@ namespace Bullet
             float minLength=float.MaxValue;
             foreach (var enemy in EnemyGenerator.Enemies)
             {
-                if ((enemy.transform.position - transform.position).magnitude < minLength)
+                if ((enemy.transform.position - transform.position).magnitude <= minLength)
                 {
                     minPosition=enemy.transform.position;
                 }
             }//可以用小根堆压bug
-            newBullet.GetComponent<Bullet>().InitializeBullet(_type,minPosition,transform.position);
+            newBullet.GetComponent<Bullet>().InitializeBullet(Type,minPosition,transform.position);
         }
     }
 }

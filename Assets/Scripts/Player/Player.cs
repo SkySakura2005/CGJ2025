@@ -32,7 +32,7 @@ namespace Player
                 currentLife -= other.GetComponent<Enemy.Enemy>().Hurt;
                 if (currentLife <= 0)
                 {
-                    SceneManager.LoadScene(1);
+                    SceneManager.LoadScene(2);
                 }
             }
         }
@@ -41,6 +41,11 @@ namespace Player
         {
             objectType.PlayerEffects(gameObject);
             
+        }
+
+        public void RemoveObject(IObjectType objectType)
+        {
+            objectType.RemoveEffects(gameObject);
         }
     }
 }

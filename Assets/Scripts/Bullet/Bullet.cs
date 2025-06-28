@@ -7,23 +7,25 @@ namespace Bullet
 {
     public class Bullet:MonoBehaviour
     {
-        private float _initSpeed=10;
+        private float _initSpeed;
         private float _radius;
         public int hurts;
         
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
 
-        private void Start()
+        private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _sr = GetComponent<SpriteRenderer>();
+            _initSpeed = 10;
         }
 
         public void InitializeBullet(IBulletType type,Vector2 enemyPosition,Vector2 playerPosition)
         {
+            transform.position = playerPosition;
             _rb.velocity = (enemyPosition-playerPosition).normalized * _initSpeed;
             _sr.sprite = type.sprite;
-            _sr.size = new Vector2(50, 50);
             hurts = type.Hurts;
         }
         private void Update()

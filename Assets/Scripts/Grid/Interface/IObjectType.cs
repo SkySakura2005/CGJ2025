@@ -9,5 +9,6 @@ namespace Grid.Interface
         bool[,] Shape {get;}
         
         void PlayerEffects(GameObject player);
+        void RemoveEffects(GameObject player);
     }
 }
