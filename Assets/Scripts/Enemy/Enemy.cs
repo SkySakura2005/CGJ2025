@@ -49,7 +49,6 @@ namespace Enemy
         {
             if (other.gameObject.CompareTag("Bullets"))
             {
-                Debug.Log(other.transform.name);
                 _life -= other.transform.GetComponent<Bullet.Bullet>().hurts;
                 if (_life <= 0)
                 {

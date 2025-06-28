@@ -65,7 +65,11 @@ namespace Grid
             {
                 for (int j = 0; j < type.Shape.GetLength(1); j++)
                 {
-                    if(type.Shape[i, j])ObjectList[row + i, col + j] = null;
+                    if(type.Shape[i, j])
+                    {
+                        Debug.Log((int)(row+i));
+                        ObjectList[row + i, col + j] = null;
+                    }
                 }
             }
             Player.Player.Instance.RemoveObject(type);

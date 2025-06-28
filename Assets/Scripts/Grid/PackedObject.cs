@@ -31,10 +31,10 @@ namespace Grid
         {
             int row;
             int col;
-            Grid.GetGridPosition(transform.position-new Vector3(_type.Shape.GetLength(0),-_type.Shape.Length,0)*0.3f+_standardDragPosition,out row,out col);
+            Grid.GetGridPosition(transform.position+new Vector3(-_type.Shape.GetLength(0),_type.Shape.GetLength(1),0)*0.3f-_standardDragPosition,out row,out col);
             if (row!=-1&&col!=-1)
             {
-                Debug.Log("Removed!");
+                Debug.Log(row+","+col);
                 Grid.RemoveFromGrid(_type,row,col);
             }
             _initialPosition=transform.position;
