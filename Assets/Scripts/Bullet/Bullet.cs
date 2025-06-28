@@ -16,12 +16,11 @@ namespace Bullet
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
-            _rb.velocity=new Vector2(_initSpeed*Mathf.Cos(Mathf.PI/4f),_initSpeed*Mathf.Sin(Mathf.PI/4f));
-            hurts=100;
         }
 
-        public void InitializeBullet(IBulletType type)
+        public void InitializeBullet(IBulletType type,Vector2 enemyPosition,Vector2 playerPosition)
         {
+            _rb.velocity = (enemyPosition-playerPosition).normalized * _initSpeed;
             hurts = type.Hurts;
         }
         private void Update()

@@ -15,6 +15,8 @@ public class EnemyGenerator : MonoBehaviour
 
     public float interval;
     public float currentInterval;
+    
+    public static List<GameObject> Enemies = new List<GameObject>();
     private void Awake()
     {
         _collider = GetComponent<BoxCollider2D>();
@@ -57,5 +59,6 @@ public class EnemyGenerator : MonoBehaviour
                 break;
         }
         newEnemy.GetComponent<Enemy.Enemy>().InitializeEnemy(new SmallEnemy(),_centerPoint);
+        Enemies.Add(newEnemy);
     }
 }

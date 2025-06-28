@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Grid.Interface;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -53,7 +54,7 @@ namespace Grid
                 for (int j = 0; j < type.Shape.GetLength(0); j++)
                 {
                     if (row + i >= type.Shape.Length || col + j >= type.Shape.GetLength(0)) return false;
-                    if (type.Shape[i, j] && ObjectList[row+i, col+j].Type !=  BuffType.None) return false;
+                    if (type.Shape[i, j] && ObjectList[row+i, col+j]!=  null) return false;
                 }
             }
             return true;
@@ -65,13 +66,22 @@ namespace Grid
             {
                 for (int j = 0; j < type.Shape.GetLength(0); j++)
                 {
-                    ObjectList[row + i, col + j] = type;
+                    if(type.Shape[i, j])ObjectList[row + i, col + j] = type;
                 }
             }
             go.transform.position = StartPosition+new Vector2((CellSize+Spacing)*col,(CellSize+Spacing)*row)+new Vector2(CellSize/2,CellSize/2);
-            if (type.Type == BuffType.Lifes)
+            Player.Player.Instance.ExecuteObject(type);
+            
+        }
+
+        public static void RemoveFromGrid(IObjectType type, int row, int col)
+        {
+            for (int i = 0; i < type.Shape.Length; i++)
             {
-                Player.Player.Instance.ExecuteObject();
+                for (int j = 0; j < type.Shape.GetLength(0); j++)
+                {
+                    if(type.Shape[i, j])ObjectList[row + i, col + j] = null;
+                }
             }
         }
     }

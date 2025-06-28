@@ -31,6 +31,11 @@ namespace Enemy
             Hurt = type.Hurt;
         }
 
+        private void OnDestroy()
+        {
+            EnemyGenerator.Enemies.Remove(gameObject);
+        }
+
         private void Update()
         {
             _rb.velocity = new Vector2(_centerPoint.x-_generatePoint.x, _centerPoint.y-_generatePoint.y).normalized*_speed;

@@ -37,9 +37,9 @@ namespace Player
             }
         }
 
-        public void ExecuteObject()
+        public void ExecuteObject(IObjectType objectType)
         {
-            //objectType.PlayerEffects(gameObject);
+            objectType.PlayerEffects(gameObject);
             
         }
     }

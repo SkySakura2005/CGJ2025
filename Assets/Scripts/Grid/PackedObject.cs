@@ -25,13 +25,20 @@ namespace Grid
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
+            int row;
+            int col;
+            Grid.GetGridPosition(eventData.position,out row,out col);
+            if (row==-1&&col==-1)
+            {
+                Grid.RemoveFromGrid(type,row,col);
+            }
             _initialPosition=transform.position;
             transform.position = (Vector3)eventData.pressPosition - (Vector3)_standardDragPosition + _sr.bounds.size / 2;
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            transform.position = eventData.position;
+            transform.position = (Vector3)eventData.position- (Vector3)_standardDragPosition + _sr.bounds.size / 2;
         }
 
         public void OnEndDrag(PointerEventData eventData)
