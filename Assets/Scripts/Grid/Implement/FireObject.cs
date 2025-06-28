@@ -24,9 +24,8 @@ namespace Grid.Implement
             {
                 if (player.transform.GetChild(i).childCount == 0)
                 {
-                    GameObject newLife=Resources.Load<GameObject>("Prefab/Life");
-                    newLife.transform.SetParent(player.transform.GetChild(i));
-                    newLife.GetComponent<BulletGenerator>().InitializeGenerator(new FireBullet());
+                    GameObject newLife=MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefab/Life"), player.transform.GetChild(i), true);
+                    newLife.GetComponent<BulletGenerator>().InitializeGenerator(new FireBullet(),Resources.LoadAll<Sprite>("ArtAssets/Creatures/Sprites")[1],player.transform.GetChild(i).position);
                     break;
                 }
             }

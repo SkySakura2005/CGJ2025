@@ -31,9 +31,10 @@ namespace Grid
         {
             int row;
             int col;
-            Grid.GetGridPosition(eventData.pressPosition,out row,out col);
-            if (row!=-1||col!=-1)
+            Grid.GetGridPosition(transform.position-new Vector3(_type.Shape.GetLength(0),-_type.Shape.Length,0)*0.3f+_standardDragPosition,out row,out col);
+            if (row!=-1&&col!=-1)
             {
+                Debug.Log("Removed!");
                 Grid.RemoveFromGrid(_type,row,col);
             }
             _initialPosition=transform.position;
@@ -43,7 +44,7 @@ namespace Grid
         public void OnDrag(PointerEventData eventData)
         {
             //transform.position = GetWorldPosition(eventData.position)+_standardDragPosition +new Vector3(_sr.size.x/2,-_sr.size.y/2,0)*0.6f;
-            transform.position = GetWorldPosition(eventData.position)+_standardDragPosition +new Vector3(_type.Shape.GetLength(0),-_type.Shape.Length,0)*0.3f;
+            transform.position = GetWorldPosition(eventData.position)+_standardDragPosition +new Vector3(_type.Shape.GetLength(1),-_type.Shape.GetLength(0),0)*0.3f;
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -58,6 +59,7 @@ namespace Grid
             }
             if (!Grid.ExaminePosition(_type, row, col))
             {
+                Debug.Log("Examine is not passed!");
                 transform.position = _initialPosition;
                 return;
             }

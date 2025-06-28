@@ -11,14 +11,19 @@ namespace Bullet
         public float interval;
         public float currentInterval;
 
-        private void Start()
+        private SpriteRenderer _sr;
+        private void Awake()
         {
+            _sr = GetComponent<SpriteRenderer>();
             currentInterval = interval;
         }
 
-        public void InitializeGenerator(IBulletType bulletType)
+        public void InitializeGenerator(IBulletType bulletType,Sprite generatorSprite,Vector3 position)
         {
             Type = bulletType;
+            _sr.sprite = generatorSprite;
+            transform.position = position;
+            transform.localScale = new Vector3(3, 3, 3);
         }
         private void Update()
         {
