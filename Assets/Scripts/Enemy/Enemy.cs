@@ -11,6 +11,7 @@ namespace Enemy
         private Vector2 _generatePoint;
         private Vector2 _centerPoint;
         private int _maxLife;
+        private int _life;
         private Sprite _sprite;
         private int _speed;
 
@@ -34,6 +35,18 @@ namespace Enemy
             if ((transform.position - (Vector3)_centerPoint).magnitude < 0.1f)
             {
                 Destroy(gameObject);
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider other)
+        {
+            if (other.CompareTag("Bullets"))
+            {
+                _life -= other.GetComponent<Bullet.Bullet>().hurts;
+                if (_life <= 0)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }

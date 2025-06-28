@@ -1,4 +1,5 @@
 using System;
+using Grid.Interface;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -6,7 +7,7 @@ namespace Grid
 {
     public class PackedObject:MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHandler
     {
-        public ObjectType type;
+        public IObjectType type;
 
         private SpriteRenderer _sr;
         private Vector2 _standardDragPosition;
@@ -18,6 +19,10 @@ namespace Grid
             _sr = GetComponent<SpriteRenderer>();
         }
 
+        public void InitializeObject(IObjectType objectType)
+        {
+            type = objectType;
+        }
         public void OnBeginDrag(PointerEventData eventData)
         {
             _initialPosition=transform.position;

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Grid.Interface;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -6,9 +7,9 @@ namespace Grid
 {
     public static class Grid
     {
-        public static ObjectType[,] ObjectList=new ObjectType[8,8];
+        public static IObjectType[,] ObjectList=new IObjectType[8,8];
 
-        public static Dictionary<ObjectType, bool[,]> ShapeMap = new Dictionary<ObjectType, bool[,]>
+        /*public static Dictionary<ObjectType, bool[,]> ShapeMap = new Dictionary<ObjectType, bool[,]>
         {
             [ObjectType.ObjectA] = new bool[1, 1]
             {
@@ -24,7 +25,7 @@ namespace Grid
                 { false,true },
                 { true,true }
             }
-        };
+        };*/
         
         public static Vector2 StartPosition=new Vector2(0,0);
         public static int CellSize=1;
@@ -45,29 +46,30 @@ namespace Grid
             col = y;
         }
 
-        public static bool ExaminePosition(ObjectType type,int row, int col)
+        public static bool ExaminePosition(IObjectType type,int row, int col)
         {
-            for (int i = 0; i < ShapeMap[type].Length; i++)
+            for (int i = 0; i < type.Shape.Length; i++)
             {
-                for (int j = 0; j < ShapeMap[type].GetLength(0); j++)
+                for (int j = 0; j < type.Shape.GetLength(0); j++)
                 {
-                    if (row + i >= ShapeMap[type].Length || col + j >= ShapeMap[type].GetLength(0)) return false;
-                    if (ShapeMap[type][i, j] && ObjectList[row+i, col+j] != ObjectType.None) return false;
+                    if (row + i >= type.Shape.Length || col + j >= type.Shape.GetLength(0)) return false;
+                    if (type.Shape[i, j] && ObjectList[row+i, col+j].Type !=  BuffType.None) return false;
                 }
             }
             return true;
         }
-        public static void AddToGrid(GameObject go,ObjectType type,int row,int col)
+        public static void AddToGrid(GameObject go,IObjectType type,int row,int col)
         {
             
-            for (int i = 0; i < ShapeMap[type].Length; i++)
+            for (int i = 0; i < type.Shape.Length; i++)
             {
-                for (int j = 0; j < ShapeMap[type].GetLength(0); j++)
+                for (int j = 0; j < type.Shape.GetLength(0); j++)
                 {
                     ObjectList[row + i, col + j] = type;
                 }
             }
             go.transform.position = StartPosition+new Vector2((CellSize+Spacing)*col,(CellSize+Spacing)*row)+new Vector2(CellSize/2,CellSize/2);
+            
         }
     }
 }
