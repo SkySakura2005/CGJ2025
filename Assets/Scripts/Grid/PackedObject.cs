@@ -44,7 +44,7 @@ namespace Grid
                 transform.position = _initialPosition;
                 return;
             }
-            Grid.AddToGrid(gameObject,row,col);
+            Grid.AddToGrid(gameObject,type,row,col);
         }
     }
 }

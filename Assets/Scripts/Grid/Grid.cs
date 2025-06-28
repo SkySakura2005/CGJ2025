@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Grid
 {
@@ -38,8 +39,8 @@ namespace Grid
                 col=-1;
                 return;
             }
-            int x=(int)(position.x-StartPosition.x)%(CellSize+Spacing);
-            int y=(int)(position.y-StartPosition.y)%(CellSize+Spacing);
+            int x=(int)(position.x-StartPosition.x)/(CellSize+Spacing);
+            int y=(int)(position.y-StartPosition.y)/(CellSize+Spacing);
             row = x;
             col = y;
         }
@@ -56,9 +57,17 @@ namespace Grid
             }
             return true;
         }
-        public static void AddToGrid(GameObject go,int row,int col)
+        public static void AddToGrid(GameObject go,ObjectType type,int row,int col)
         {
             
+            for (int i = 0; i < ShapeMap[type].Length; i++)
+            {
+                for (int j = 0; j < ShapeMap[type].GetLength(0); j++)
+                {
+                    ObjectList[row + i, col + j] = type;
+                }
+            }
+            go.transform.position = StartPosition+new Vector2((CellSize+Spacing)*col,(CellSize+Spacing)*row)+new Vector2(CellSize/2,CellSize/2);
         }
     }
 }
