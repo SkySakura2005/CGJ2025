@@ -7,7 +7,8 @@ namespace Grid.Implement
 {
     public class EarthObject:IObjectType
     {
-        public BuffType Type=> BuffType.Lifes;
+        public BuffType Type { get; }
+    
         public Sprite Sprite => Resources.LoadAll<Sprite>("ArtAssets/Creatures/Sprites")[2];
 
         public bool[,] Shape =>new bool[1,1]

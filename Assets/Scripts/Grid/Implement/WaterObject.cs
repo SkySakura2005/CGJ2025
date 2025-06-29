@@ -8,7 +8,7 @@ namespace Grid.Implement
     
     public class WaterObject:IObjectType
     {
-        public BuffType Type=> BuffType.Lifes;
+        public BuffType Type { get; }
         public Sprite Sprite => Resources.LoadAll<Sprite>("ArtAssets/Creatures/Sprites")[3];
 
         public bool[,] Shape =>new bool[2,1]
