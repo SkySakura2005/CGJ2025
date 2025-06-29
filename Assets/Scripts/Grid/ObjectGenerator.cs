@@ -17,7 +17,6 @@ namespace Grid
             GenerateObject(new WaterObject());
             GenerateObject(new EarthObject());
             GenerateObject(new GrassObject());
-            GenerateRandomObject();
         }
 
         private void GenerateRandomObject()
