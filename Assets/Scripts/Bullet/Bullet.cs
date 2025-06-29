@@ -24,9 +24,18 @@ namespace Bullet
         public void InitializeBullet(IBulletType type,Vector2 enemyPosition,Vector2 playerPosition)
         {
             transform.position = playerPosition;
+            var player = Player.Player.Instance;
+            float speedBuff = 1 + 0.1f * player.ShoeBuffCount;
+            float hurtBuff = 1 + 0.2f * player.RiotBuffCount;
+            float dragBuff = 1 - 0.07f * player.SoapBuffCount;
+            float scaleBuff = 1 + 0.2f * player.SoundBuffCount;
+
+            _initSpeed = 10 * speedBuff;
             _rb.velocity = (enemyPosition-playerPosition).normalized * _initSpeed;
             _sr.sprite = type.sprite;
-            hurts = type.Hurts;
+            hurts = Mathf.RoundToInt(type.Hurts * hurtBuff);//四舍五入一下，看情况需不需要
+            _rb.drag = Mathf.Max(_rb.drag * dragBuff, 0.01f);
+            transform.localScale = Vector3.one * scaleBuff;
         }
         private void Update()
         {

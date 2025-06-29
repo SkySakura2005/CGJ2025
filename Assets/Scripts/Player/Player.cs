@@ -50,5 +50,22 @@ namespace Player
         {
             objectType.RemoveEffects(gameObject);
         }
+
+        public int ShoeBuffCount { get; private set; }
+        public int RiotBuffCount { get; private set; }
+        public int SoapBuffCount { get; private set; }
+        public int SoundBuffCount { get; private set; }
+
+        public void AddShoeBuff() => ShoeBuffCount++;
+        public void RemoveShoeBuff() { if (ShoeBuffCount > 0) ShoeBuffCount--; }
+
+        public void AddRiotBuff() => RiotBuffCount++;
+        public void RemoveRiotBuff() { if (RiotBuffCount > 0) RiotBuffCount--; }
+
+        public void AddSoapBuff() => SoapBuffCount++;
+        public void RemoveSoapBuff() { if (SoapBuffCount > 0) SoapBuffCount--; }
+
+        public void AddSoundBuff() => SoundBuffCount++;
+        public void RemoveSoundBuff() { if (SoundBuffCount > 0) SoundBuffCount--; }
     }
 }
