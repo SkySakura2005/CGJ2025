@@ -11,6 +11,8 @@ namespace Player
         public int maxLife;
         public int currentLife;
 
+        public GameObject gameOverCanvas;
+        
         public static Player Instance;
         private void Start()
         {
@@ -32,7 +34,8 @@ namespace Player
                 currentLife -= other.GetComponent<Enemy.Enemy>().Hurt;
                 if (currentLife <= 0)
                 {
-                    SceneManager.LoadScene(2);
+                    
+                    gameOverCanvas.SetActive(true);
                 }
             }
         }

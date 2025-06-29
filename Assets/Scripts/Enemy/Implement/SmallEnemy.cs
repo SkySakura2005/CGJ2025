@@ -21,7 +21,7 @@ namespace Enemy.Implement
 
         public int Hurt
         {
-            get { return 1; }
+            get { return 10; }
         }
     }
 }
