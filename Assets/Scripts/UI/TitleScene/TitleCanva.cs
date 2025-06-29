@@ -10,6 +10,7 @@ namespace UI.TitleScene
         public Button exitButton;
         private void Start()
         {
+            Time.timeScale = 1;
             startButton.onClick.AddListener(()=>SceneManager.LoadScene(1));
             exitButton.onClick.AddListener(()=>Application.Quit());
         }

@@ -35,11 +35,12 @@ namespace Bullet
             _sr.sprite = type.sprite;
             hurts = Mathf.RoundToInt(type.Hurts * hurtBuff);//四舍五入一下，看情况需不需要
             _rb.drag = Mathf.Max(_rb.drag * dragBuff, 0.01f);
-            transform.localScale = Vector3.one * scaleBuff;
+            transform.localScale = new Vector3(0.05f,0.05f,0.05f) * (type.size * scaleBuff);
+            _rb.drag *= type.fiction;
         }
         private void Update()
         {
-            if (_rb.velocity.magnitude <= 0.1f)
+            if (_rb.velocity.magnitude <= 1f)
             {
                 Destroy(gameObject);
             }

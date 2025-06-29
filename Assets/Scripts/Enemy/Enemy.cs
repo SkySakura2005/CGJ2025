@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Enemy.Interface;
 using UnityEngine;
 
@@ -7,18 +8,20 @@ namespace Enemy
     public class Enemy:MonoBehaviour
     {
         private Rigidbody2D _rb;
+        private SpriteRenderer _sr;
         
         private Vector2 _generatePoint;
         private Vector2 _centerPoint;
         private int _maxLife;
         private int _life;
-        private Sprite _sprite;
-        private int _speed;
+        private float _speed;
+        private Sprite[] _enemyAnim;
 
         public int Hurt;
-        private void Start()
+        private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _sr = GetComponent<SpriteRenderer>();
         }
 
         public void InitializeEnemy(IEnemyType type,Vector2 centerPoint) 
@@ -27,8 +30,10 @@ namespace Enemy
             _centerPoint = centerPoint;
             _maxLife = type.MaxLife;
             _life = _maxLife;
+            _enemyAnim = type.EnemySprite;
             _speed = type.Velocity;
             Hurt = type.Hurt;
+            StartCoroutine(enemyAnimation());
         }
 
         private void OnDestroy()
@@ -53,6 +58,18 @@ namespace Enemy
                 if (_life <= 0)
                 {
                     Destroy(gameObject);
+                }
+            }
+        }
+
+        private IEnumerator enemyAnimation()
+        {
+            while (true)
+            {
+                foreach (var sprite in _enemyAnim)
+                {
+                    _sr.sprite = sprite;
+                    yield return new WaitForSeconds((float)1/7);
                 }
             }
         }

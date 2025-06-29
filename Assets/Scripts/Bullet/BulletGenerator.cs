@@ -8,20 +8,22 @@ namespace Bullet
     {
         public IBulletType Type;
         
-        public float interval;
-        public float currentInterval;
+        private float interval;
+        private float currentInterval;
 
         private SpriteRenderer _sr;
         private void Awake()
         {
             _sr = GetComponent<SpriteRenderer>();
-            currentInterval = interval;
+            
         }
 
         public void InitializeGenerator(IBulletType bulletType,Sprite generatorSprite,Vector3 position)
         {
             Type = bulletType;
             _sr.sprite = generatorSprite;
+            interval = bulletType.interval;
+            currentInterval = bulletType.interval;
             transform.position = position;
             transform.localScale = new Vector3(3, 3, 3);
         }
@@ -37,9 +39,11 @@ namespace Bullet
 
         private void GenerateBullet()
         {
+            if(EnemyGenerator.Enemies.Count==0) return;
             GameObject newBullet = Instantiate(Resources.Load<GameObject>("Prefab/Bullet"), transform, true);
             Vector2 minPosition=new Vector2();
             float minLength=float.MaxValue;
+            
             foreach (var enemy in EnemyGenerator.Enemies)
             {
                 if ((enemy.transform.position - transform.position).magnitude <= minLength)

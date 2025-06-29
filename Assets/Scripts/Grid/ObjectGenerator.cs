@@ -17,6 +17,7 @@ namespace Grid
             GenerateObject(new WaterObject());
             GenerateObject(new EarthObject());
             GenerateObject(new GrassObject());
+            //GenerateRandomObject();
         }
 
         public void GenerateRandomObject()
@@ -28,7 +29,7 @@ namespace Grid
                 randomBuffType = (BuffType)values.GetValue(Random.Range(0, values.Length));
             } while (randomBuffType == BuffType.None);
 
-            string prefabPath = "";//路径，需要修改
+            string prefabPath = "Prefab/Object";//路径，需要修改
 
             GameObject prefab = Resources.Load<GameObject>(prefabPath);
 
@@ -37,6 +38,11 @@ namespace Grid
                 Random.Range(_coll.bounds.min.x, _coll.bounds.max.x),
                 Random.Range(_coll.bounds.min.y, _coll.bounds.max.y)
             );
+            switch (randomBuffType)
+            {
+                
+            }
+            //newObject.GetComponent<PackedObject>().InitializeObject(randomBuffType,new Vector3(Random.Range(_coll.bounds.min.x,_coll.bounds.max.x),Random.Range(_coll.bounds.min.y,_coll.bounds.max.y)));
         }
         public void GenerateObject(IObjectType objectType)
         {
