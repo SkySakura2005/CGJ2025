@@ -12,9 +12,9 @@ namespace Grid
 
 
         
-        public static Vector2 StartPosition=new Vector2(-8.5f,3.85f);
+        public static Vector2 StartPosition=new Vector2(-8.25f,3.7f);
         public static float CellSize=0.6f;
-        public static float Spacing=0.17f;
+        public static float Spacing=0.14f;
         public static void GetGridPosition(Vector2 position,out int row,out int col)
         {
             if (position.x < StartPosition.x || position.y > StartPosition.y ||

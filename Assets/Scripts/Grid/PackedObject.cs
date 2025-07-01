@@ -45,10 +45,22 @@ namespace Grid
         {
             //transform.position = GetWorldPosition(eventData.position)+_standardDragPosition +new Vector3(_sr.size.x/2,-_sr.size.y/2,0)*0.6f;
             transform.position = GetWorldPosition(eventData.position)+_standardDragPosition +new Vector3(_type.Shape.GetLength(1),-_type.Shape.GetLength(0),0)*0.3f;
+            int row;
+            int col;
+            Grid.GetGridPosition(transform.position+new Vector3(-_type.Shape.GetLength(0),_type.Shape.GetLength(1),0)*0.3f-_standardDragPosition,out row,out col);
+            if (row!=-1&&col!=-1)
+            {
+                GridView.Instance.UpdateGrid(row,col,_type.Shape);
+            }
+            else
+            {
+                GridView.Instance.ClearGrid();
+            }
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            GridView.Instance.ClearGrid();
             int row;
             int col;
             Grid.GetGridPosition(GetWorldPosition(eventData.position),out row,out col);

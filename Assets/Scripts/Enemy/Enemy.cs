@@ -44,7 +44,7 @@ namespace Enemy
         private void Update()
         {
             _rb.velocity = new Vector2(_centerPoint.x-_generatePoint.x, _centerPoint.y-_generatePoint.y).normalized*_speed;
-            if ((transform.position - (Vector3)_centerPoint).magnitude < 0.1f)
+            if ((transform.position - (Vector3)_centerPoint).magnitude < 1f)
             {
                 Destroy(gameObject);
             }
@@ -55,10 +55,8 @@ namespace Enemy
             if (other.gameObject.CompareTag("Bullets"))
             {
                 _life -= other.transform.GetComponent<Bullet.Bullet>().hurts;
-                if (_life <= 0)
-                {
-                    Destroy(gameObject);
-                }
+                StartCoroutine(attackedAnimation());
+                
             }
         }
 
@@ -71,6 +69,22 @@ namespace Enemy
                     _sr.sprite = sprite;
                     yield return new WaitForSeconds((float)1/7);
                 }
+            }
+        }
+
+        private IEnumerator attackedAnimation()
+        {
+            float timer = 0f;
+            _sr.color = new Color(1, 0, 0);
+            while (timer < 1)
+            {
+                timer += Time.deltaTime*2;
+                _sr.color = new Color(1, timer, timer);
+                yield return null;
+            }
+            if (_life <= 0)
+            {
+                Destroy(gameObject);
             }
         }
     }

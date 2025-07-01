@@ -15,6 +15,7 @@ namespace UI.ChooseUI
             chooseButton.onClick.AddListener(() => {
                 objectGenerator.GenerateRandomObject();
                 gameObject.SetActive(false);
+                Time.timeScale = 1;
             });
         }
     }
