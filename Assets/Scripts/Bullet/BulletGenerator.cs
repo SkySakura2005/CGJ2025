@@ -49,6 +49,7 @@ namespace Bullet
                 if ((enemy.transform.position - transform.position).magnitude <= minLength)
                 {
                     minPosition=enemy.transform.position;
+                    minLength = (enemy.transform.position - transform.position).magnitude;
                 }
             }//可以用小根堆压bug
             newBullet.GetComponent<Bullet>().InitializeBullet(Type,minPosition,transform.position);

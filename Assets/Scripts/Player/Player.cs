@@ -14,6 +14,8 @@ namespace Player
         public GameObject gameOverCanvas;
         
         public static Player Instance;
+        
+        private SpriteRenderer _sr;
         private void Start()
         {
             if (Instance == null)
@@ -25,6 +27,27 @@ namespace Player
                 Destroy(gameObject);
             }
             currentLife = maxLife;
+            _sr = GetComponent<SpriteRenderer>();
+        }
+
+        private void Update()
+        {
+            Vector2 minPosition=new Vector2();
+            float minLength=float.MaxValue;
+            foreach (var enemy in EnemyGenerator.Enemies)
+            {
+                if ((enemy.transform.position - transform.position).magnitude <= minLength)
+                {
+                    minPosition=enemy.transform.position;
+                    minLength = (enemy.transform.position - transform.position).magnitude;
+                }
+            }
+
+            if (EnemyGenerator.Enemies.Count > 0)
+            {
+                _sr.flipX=minPosition.x>transform.position.x;
+            }
+            
         }
 
         private void OnTriggerEnter2D(Collider2D other)
