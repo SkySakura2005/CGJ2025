@@ -7,7 +7,7 @@ namespace Grid.Implement
 {
     public class EarthObject:IObjectType
     {
-        public BuffType Type { get; }
+        public BuffType Type => BuffType.Earth;
     
         public Sprite Sprite => Resources.LoadAll<Sprite>("ArtAssets/Creatures/Sprites")[2];
 

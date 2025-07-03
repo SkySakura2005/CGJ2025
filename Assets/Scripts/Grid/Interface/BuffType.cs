@@ -2,6 +2,6 @@ namespace Grid.Interface
 {
     public enum BuffType
     {
-        None,Shoes,Soap,Stick,Sound,Boxing
+        None,Shoes,Soap,Boxing,Sound,Earth,Fire,Grass,Water
     }
 }

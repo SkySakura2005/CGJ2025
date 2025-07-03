@@ -6,8 +6,12 @@ namespace Grid.Implement
     public class soundBuff : IObjectType
     {
         public BuffType Type => BuffType.Sound;
-        public Sprite Sprite => Resources.LoadAll<Sprite>("ArtAssets/Creatures/Sprites")[/*填正确索引*/3];
-        public bool[,] Shape => new bool[1,1] { { true } };
+        public Sprite Sprite => Resources.LoadAll<Sprite>("ArtAssets/Properties/Properties")[/*填正确索引*/4];
+        public bool[,] Shape => new bool[2,2]
+        {
+            { true,true },
+            { true,true }
+        };
 
         public void PlayerEffects(GameObject player)
         {

@@ -13,11 +13,7 @@ namespace Grid
         private void Start()
         {
             _coll = GetComponent<BoxCollider2D>();
-            GenerateObject(new FireObject());
-            GenerateObject(new WaterObject());
-            GenerateObject(new EarthObject());
-            GenerateObject(new GrassObject());
-            //GenerateRandomObject();
+            GenerateRandomObject();
         }
 
         public void GenerateRandomObject()
@@ -38,11 +34,36 @@ namespace Grid
                 Random.Range(_coll.bounds.min.x, _coll.bounds.max.x),
                 Random.Range(_coll.bounds.min.y, _coll.bounds.max.y)
             );
+            IObjectType thisType=new riotBuff();
             switch (randomBuffType)
             {
-                
+                case BuffType.Shoes:
+                    thisType = new shoeBuff();
+                    break;
+                case BuffType.Soap:
+                    thisType = new soapBuff();
+                    break;
+                case BuffType.Boxing:
+                    thisType = new riotBuff();
+                    break;
+                case BuffType.Sound:
+                    thisType = new soundBuff();
+                    break;
+                case BuffType.Earth:
+                    thisType = new EarthObject();
+                    break;
+                case BuffType.Fire:
+                    thisType = new FireObject();
+                    break;
+                case BuffType.Grass:
+                    thisType = new GrassObject();
+                    break;
+                case BuffType.Water:
+                    thisType = new WaterObject();
+                    break;
             }
-            //newObject.GetComponent<PackedObject>().InitializeObject(randomBuffType,new Vector3(Random.Range(_coll.bounds.min.x,_coll.bounds.max.x),Random.Range(_coll.bounds.min.y,_coll.bounds.max.y)));
+            Debug.Log(thisType);
+            newObject.GetComponent<PackedObject>().InitializeObject(thisType,new Vector3(Random.Range(_coll.bounds.min.x,_coll.bounds.max.x),Random.Range(_coll.bounds.min.y,_coll.bounds.max.y)));
         }
         public void GenerateObject(IObjectType objectType)
         {

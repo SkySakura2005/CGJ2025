@@ -7,10 +7,7 @@ namespace Grid.Implement
 {
     public class GrassObject:IObjectType
     {
-        public BuffType Type
-        {
-            get;
-        }
+        public BuffType Type=>BuffType.Grass;
         public Sprite Sprite => Resources.LoadAll<Sprite>("ArtAssets/Creatures/Sprites")[0];
 
         public bool[,] Shape =>new bool[2,2]
