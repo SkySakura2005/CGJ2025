@@ -13,10 +13,17 @@ namespace Grid
         private void Start()
         {
             _coll = GetComponent<BoxCollider2D>();
-            GenerateRandomObject();
+            IObjectType result1=new soapBuff();
+            while (result1.Type!=BuffType.Earth&&result1.Type!=BuffType.Fire&&result1.Type!=BuffType.Grass&&result1.Type!=BuffType.Water)
+            {
+                result1=GenerateRandomObject();
+            }
+            GenerateObject(result1);
+            GenerateObject(GenerateRandomObject());
+            GenerateObject(GenerateRandomObject());
         }
 
-        public void GenerateRandomObject()
+        public IObjectType GenerateRandomObject()
         {
             Array values = Enum.GetValues(typeof(BuffType));
             BuffType randomBuffType;
@@ -25,7 +32,7 @@ namespace Grid
                 randomBuffType = (BuffType)values.GetValue(Random.Range(0, values.Length));
             } while (randomBuffType == BuffType.None);
 
-            string prefabPath = "Prefab/Object";//路径，需要修改
+            /*string prefabPath = "Prefab/Object";//路径，需要修改
 
             GameObject prefab = Resources.Load<GameObject>(prefabPath);
 
@@ -33,7 +40,7 @@ namespace Grid
             newObject.transform.position = new Vector3(
                 Random.Range(_coll.bounds.min.x, _coll.bounds.max.x),
                 Random.Range(_coll.bounds.min.y, _coll.bounds.max.y)
-            );
+            );*/
             IObjectType thisType=new riotBuff();
             switch (randomBuffType)
             {
@@ -63,7 +70,8 @@ namespace Grid
                     break;
             }
             Debug.Log(thisType);
-            newObject.GetComponent<PackedObject>().InitializeObject(thisType,new Vector3(Random.Range(_coll.bounds.min.x,_coll.bounds.max.x),Random.Range(_coll.bounds.min.y,_coll.bounds.max.y)));
+            //newObject.GetComponent<PackedObject>().InitializeObject(thisType,new Vector3(Random.Range(_coll.bounds.min.x,_coll.bounds.max.x),Random.Range(_coll.bounds.min.y,_coll.bounds.max.y)));
+            return thisType;
         }
         public void GenerateObject(IObjectType objectType)
         {
